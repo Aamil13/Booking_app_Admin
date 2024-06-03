@@ -1,0 +1,9 @@
+.eslintrc
+.prettierrc.json
+.vscode/settings.json
+package.json
+package-lock.json
+README.md
+tailwind.config.js
+tsconfig.json
+postcss.config.js
