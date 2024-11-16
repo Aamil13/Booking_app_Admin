@@ -1,1 +1,2 @@
 /* /index.html 200
+/api/* https://bookings-app-lac.vercel.app/api/v1/:splat 200
