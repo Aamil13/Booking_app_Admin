@@ -13,9 +13,10 @@ const client = async <T, U>(
   }: ClientRequest<U> = {}
 ): Promise<ServerResponse<T>> => {
   const config: AxiosRequestConfig = {
-    url: customBaseUrl
-      ? `${import.meta.env.VITE_BASE_URL}/${endPoint}`
-      : `${import.meta.env.VITE_PRODUCTION_BASE_URL}/${endPoint}`,
+    url:
+      import.meta.env.VITE_ISPRODUCTION === 'false'
+        ? `${import.meta.env.VITE_BASE_URL}/${endPoint}`
+        : `${import.meta.env.VITE_PRODUCTION_BASE_URL}/${endPoint}`,
     method: method || (data ? 'POST' : 'GET'),
     data: data instanceof FormData ? data : JSON.stringify(data),
     headers: {
