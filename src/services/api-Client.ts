@@ -13,7 +13,7 @@ const client = async <T, U>(
   }: ClientRequest<U> = {}
 ): Promise<ServerResponse<T>> => {
   const config: AxiosRequestConfig = {
-    url: !customBaseUrl
+    url: customBaseUrl
       ? `${import.meta.env.VITE_BASE_URL}/${endPoint}`
       : `${import.meta.env.VITE_PRODUCTION_BASE_URL}/${endPoint}`,
     method: method || (data ? 'POST' : 'GET'),
@@ -30,6 +30,8 @@ const client = async <T, U>(
   };
 
   try {
+    console.log('conf', config.url);
+
     const response: AxiosResponse<ServerResponse<T>> = await axios(config);
     const { data: resData } = response;
 
