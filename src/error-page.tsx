@@ -1,5 +1,4 @@
 import { Link, useRouteError } from 'react-router-dom';
-import LoginImage from '../src/assets/ai-generated-9145898_1920.jpg';
 import icon from '../public/favicon-32x32.png';
 
 export default function ErrorPage() {

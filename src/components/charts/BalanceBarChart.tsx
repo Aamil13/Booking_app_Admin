@@ -5,46 +5,13 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  Legend,
 } from 'recharts';
 import type { DatePickerProps } from 'antd';
-import { DatePicker, Space } from 'antd';
+import { DatePicker } from 'antd';
 
 const onChange: DatePickerProps['onChange'] = (date, dateString) => {
   console.log(date, dateString);
 };
-
-const data = [
-  {
-    date: 'Mon, 11',
-    total: 331,
-  },
-  {
-    date: 'Tue, 21',
-    total: 102,
-  },
-
-  {
-    date: 'Mon, 31',
-    total: 81,
-  },
-  {
-    date: 'Fri, 1',
-    total: 20,
-  },
-  {
-    date: 'Wed, 10',
-    total: 100,
-  },
-  {
-    date: 'Thur, 11',
-    total: 4,
-  },
-  {
-    date: 'Sun, 3',
-    total: 0,
-  },
-];
 
 const BalanceBarChart = ({ dailyIncomeArray }: any) => {
   return (

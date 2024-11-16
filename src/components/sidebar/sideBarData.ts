@@ -1,11 +1,6 @@
-import { FaUsers, FaAddressCard } from 'react-icons/fa';
+import { FaAddressCard } from 'react-icons/fa';
 import { FaHotel } from 'react-icons/fa6';
 export const sideBarData = [
-  // {
-  //   title: 'Users',
-  //   icon: FaUsers,
-  //   subLinks: ['View/Delete', 'Create', 'Update'],
-  // },
   {
     title: 'Hotel',
     icon: FaHotel,

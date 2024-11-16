@@ -7,61 +7,8 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import type { DatePickerProps } from 'antd';
 
-import { FaArrowDown, FaArrowUp } from 'react-icons/fa6';
-
-// const data = [
-//   {
-//     month: 'Jan',
-//     total: 331,
-//   },
-//   {
-//     month: 'Feb',
-//     total: 102,
-//   },
-
-//   {
-//     month: 'March',
-//     total: 81,
-//   },
-//   {
-//     month: 'April',
-//     total: 20,
-//   },
-//   {
-//     month: 'May',
-//     total: 100,
-//   },
-//   {
-//     month: 'June',
-//     total: 4,
-//   },
-//   {
-//     month: 'July',
-//     total: 0,
-//   },
-//   {
-//     month: 'Aug',
-//     total: 0,
-//   },
-//   {
-//     month: 'Sep',
-//     total: 0,
-//   },
-//   {
-//     month: 'Oct',
-//     total: 0,
-//   },
-//   {
-//     month: 'Nov',
-//     total: 0,
-//   },
-//   {
-//     month: 'Dec',
-//     total: 100,
-//   },
-// ];
+import { FaArrowUp } from 'react-icons/fa6';
 
 const BalanceLineChart = ({ data }: any) => {
   return (

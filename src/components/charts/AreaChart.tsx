@@ -8,43 +8,11 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import type { DatePickerProps } from 'antd';
-import { DatePicker, Space } from 'antd';
+import { DatePicker } from 'antd';
 
 const onChange: DatePickerProps['onChange'] = (date, dateString) => {
   console.log(date, dateString);
 };
-
-const data = [
-  {
-    name: 'Hotels',
-    total: 331,
-  },
-  {
-    name: 'Apartments',
-    total: 102,
-  },
-
-  {
-    name: 'Resorts',
-    total: 81,
-  },
-  {
-    name: 'Villas',
-    total: 20,
-  },
-  {
-    name: 'Cabins',
-    total: 100,
-  },
-  {
-    name: 'Cottages',
-    total: 4,
-  },
-  {
-    name: 'Hostels',
-    total: 0,
-  },
-];
 
 const AreaChartContainer = ({ hotelsData }: any) => {
   return (

@@ -38,8 +38,7 @@ const UpdateHotel = () => {
 
   const hotelId = Location.state;
 
-  const { data: singleHotelData, isFetching: singleHotelFetching } =
-    useGetHotel(hotelId, !!hotelId);
+  const { data: singleHotelData } = useGetHotel(hotelId, !!hotelId);
   const { mutate: deleteHotelImage } = useDeleteHotelPhoto();
   const {
     register,

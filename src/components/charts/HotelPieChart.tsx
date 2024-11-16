@@ -7,38 +7,6 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-const data = [
-  {
-    name: 'Hotels',
-    total: 131,
-  },
-  {
-    name: 'Apartments',
-    total: 102,
-  },
-
-  {
-    name: 'Resorts',
-    total: 81,
-  },
-  {
-    name: 'Villas',
-    total: 90,
-  },
-  {
-    name: 'Cabins',
-    total: 100,
-  },
-  {
-    name: 'Cottages',
-    total: 4,
-  },
-  {
-    name: 'Hostels',
-    total: 0,
-  },
-];
-
 const HotelPieChart = ({ hotelsData }: any) => {
   return (
     <div className="w-full h-full border-2 p-4 flex flex-col gap-10 rounded-md">

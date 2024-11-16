@@ -1,4 +1,4 @@
-import { Button, Checkbox, Popover } from 'antd';
+import { Checkbox, Popover } from 'antd';
 import { IoSettings } from 'react-icons/io5';
 
 import type { CheckboxProps } from 'antd';

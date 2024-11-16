@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { client } from './api-Client';
 import { message } from 'antd';
 import { useNavigate } from 'react-router-dom';
