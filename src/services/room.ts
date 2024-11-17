@@ -42,7 +42,7 @@ export const useCreateRoom = (id: string) => {
   const [token] = useCookie('access_token');
   return useMutation({
     mutationFn: (formData: any) => createRoom(formData, id, token),
-    onSuccess: (response: any) => {
+    onSuccess: () => {
       message.success('Room Created', 2);
     },
     onError: (res: any) => {
@@ -86,7 +86,7 @@ export const useDeleteRoom = () => {
   return useMutation({
     mutationFn: ({ roomId, hotelID }: any) =>
       deleteRoom(roomId, hotelID, token),
-    onSuccess: (response: any) => {
+    onSuccess: () => {
       message.success('Room Deleted', 2);
     },
     onError: (res: any) => {
@@ -100,7 +100,7 @@ export const useUpdateRoom = () => {
   const [token] = useCookie('access_token');
   return useMutation({
     mutationFn: ({ roomId, data }: any) => updateRoom(roomId, data, token),
-    onSuccess: (response: any) => {
+    onSuccess: () => {
       message.success('Room Updated', 2);
     },
     onError: (res: any) => {

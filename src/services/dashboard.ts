@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { client } from './api-Client';
 import { message } from 'antd';
-import useCookie from '../hooks/useCookie';
 
 export async function getDashBoardData(token: string) {
   const response: any = await client(`user/admin`, {
