@@ -2,9 +2,12 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { client } from './api-Client';
 import { message } from 'antd';
+import useCookie from '../hooks/useCookie';
 
-export async function getDashBoardData() {
-  const response: any = await client(`user/admin`);
+export async function getDashBoardData(token: string) {
+  const response: any = await client(`user/admin`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
   return response;
 }
 
@@ -13,10 +16,18 @@ export async function getAllHotelsCount() {
   return response;
 }
 export function useDashBoardData() {
+  let finalCookie: any = null;
+
+  if (typeof document !== 'undefined') {
+    const cookieValue = document.cookie
+      .split('; ')
+      .find((row) => row.startsWith('access_token='));
+    finalCookie = cookieValue ? cookieValue.split('=')[1] : null;
+  }
   const state = useQuery({
     queryKey: ['dashboardData'],
 
-    queryFn: () => getDashBoardData(),
+    queryFn: () => getDashBoardData(finalCookie),
   });
 
   let errorMessage = null;

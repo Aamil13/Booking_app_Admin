@@ -2,11 +2,13 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { client } from './api-Client';
 import { message } from 'antd';
+import useCookie from '../hooks/useCookie';
 
-export async function createRoom(data: any, id: string) {
+export async function createRoom(data: any, id: string, token: string) {
   const response = await client(`rooms/${id}`, {
     method: 'POST',
     data,
+    headers: { Authorization: `Bearer ${token}` },
   });
   return response;
 }
@@ -20,29 +22,28 @@ export async function getRoom(roomId: string) {
   return response;
 }
 
-export async function deleteRoom(id: string, hotelid: string) {
+export async function deleteRoom(id: string, hotelid: string, token: string) {
   const response = await client(`rooms/${id}/${hotelid}`, {
     method: 'DELETE',
+    headers: { Authorization: `Bearer ${token}` },
   });
   return response;
 }
-export async function updateRoom(id: string, data: string) {
+export async function updateRoom(id: string, data: string, token: string) {
   const response = await client(`rooms/${id}`, {
     method: 'PUT',
     data: data,
+    headers: { Authorization: `Bearer ${token}` },
   });
   return response;
 }
 
 export const useCreateRoom = (id: string) => {
+  const [token] = useCookie('access_token');
   return useMutation({
-    mutationFn: (formData: any) => createRoom(formData, id),
+    mutationFn: (formData: any) => createRoom(formData, id, token),
     onSuccess: (response: any) => {
-      if (response?.status?.toString().startsWith('2')) {
-        message.success('Room Created', 2);
-      } else {
-        message.error(response.message || 'An error occurred', 2);
-      }
+      message.success('Room Created', 2);
     },
     onError: (res: any) => {
       console.log(res, 'res');
@@ -81,14 +82,12 @@ export function useGetRoom(roomId: string) {
 }
 
 export const useDeleteRoom = () => {
+  const [token] = useCookie('access_token');
   return useMutation({
-    mutationFn: ({ roomId, hotelID }: any) => deleteRoom(roomId, hotelID),
+    mutationFn: ({ roomId, hotelID }: any) =>
+      deleteRoom(roomId, hotelID, token),
     onSuccess: (response: any) => {
-      if (response?.status?.toString().startsWith('2')) {
-        message.success('Room Deleted', 2);
-      } else {
-        message.error(response.message || 'An error occurred', 2);
-      }
+      message.success('Room Deleted', 2);
     },
     onError: (res: any) => {
       console.log(res, 'res');
@@ -98,14 +97,11 @@ export const useDeleteRoom = () => {
 };
 
 export const useUpdateRoom = () => {
+  const [token] = useCookie('access_token');
   return useMutation({
-    mutationFn: ({ roomId, data }: any) => updateRoom(roomId, data),
+    mutationFn: ({ roomId, data }: any) => updateRoom(roomId, data, token),
     onSuccess: (response: any) => {
-      if (response?.status?.toString().startsWith('2')) {
-        message.success('Room Updated', 2);
-      } else {
-        message.error(response.message || 'An error occurred', 2);
-      }
+      message.success('Room Updated', 2);
     },
     onError: (res: any) => {
       // console.log(res, 'res');

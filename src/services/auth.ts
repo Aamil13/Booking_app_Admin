@@ -3,6 +3,7 @@ import { client } from './api-Client';
 import { message } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useMainStore } from '../store/store';
+import useCookie from '../hooks/useCookie';
 export async function Login(data: any) {
   const response: any = await client(`auth/login`, {
     method: 'POST',
@@ -21,10 +22,17 @@ export async function Register(data: any) {
 export const useLogin = () => {
   const setUserName = useMainStore((state) => state.setUserName);
   const navigate = useNavigate();
+  const [_, setCookie] = useCookie('access_token');
   return useMutation({
     mutationFn: (data: any) => Login(data),
     onSuccess: (response: any) => {
+      // console.log('res', response);
+
       setUserName(response?.otherDetails?.username);
+      setCookie(
+        response?.tokenWithExpireDate?.accessToken,
+        response?.tokenWithExpireDate?.accessToken
+      );
       message.success('Logged in', 2);
       navigate('/');
     },

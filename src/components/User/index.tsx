@@ -11,7 +11,6 @@ const index = () => {
     currentPage,
     itemsPerPage
   );
-  console.log('users', UsersData);
 
   const columns = [
     {

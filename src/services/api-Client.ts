@@ -2,13 +2,6 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { ClientRequest, ServerResponse } from '../types/api-client-types';
 
 const isProduction = import.meta.env.VITE_ISPRODUCTION === 'true';
-console.log('Running in production:', isProduction);
-console.log('VITE_ISPRODUCTION:', import.meta.env.VITE_ISPRODUCTION);
-console.log('VITE_BASE_URL:', import.meta.env.VITE_BASE_URL);
-console.log(
-  'VITE_PRODUCTION_BASE_URL:',
-  import.meta.env.VITE_PRODUCTION_BASE_URL
-);
 const client = async <T, U>(
   endPoint: string,
   {
@@ -39,8 +32,6 @@ const client = async <T, U>(
   };
 
   try {
-    console.log('conf', config.url);
-
     const response: AxiosResponse<ServerResponse<T>> = await axios(config);
     const { data: resData } = response;
 
