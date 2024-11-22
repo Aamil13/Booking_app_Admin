@@ -31,7 +31,7 @@ export const useLogin = () => {
       setUserName(response?.otherDetails?.username);
       setCookie(
         response?.tokenWithExpireDate?.accessToken,
-        response?.tokenWithExpireDate?.accessToken
+        response?.tokenWithExpireDate?.expires
       );
       message.success('Logged in', 2);
       navigate('/');
