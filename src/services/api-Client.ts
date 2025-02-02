@@ -15,7 +15,7 @@ const client = async <T, U>(
 ): Promise<ServerResponse<T>> => {
   const config: AxiosRequestConfig = {
     url:
-      isProduction !== true
+      isProduction == true
         ? `${import.meta.env.VITE_BASE_URL}/${endPoint}`
         : `${import.meta.env.VITE_PRODUCTION_BASE_URL}/${endPoint}`,
     method: method || (data ? 'POST' : 'GET'),
