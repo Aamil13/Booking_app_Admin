@@ -106,9 +106,9 @@ const UpdateHotel = () => {
     // console.log(rating);
 
     // formData.append('rating', rating.toString());
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
+    // for (let [key, value] of formData.entries()) {
+    //   console.log(`${key}: ${value}`);
+    // }
 
     updateHotel({ formData, id: hotelId });
   };
@@ -174,8 +174,6 @@ const UpdateHotel = () => {
     ...selectedFiles.map((file) => ({ type: 'local', file })),
   ];
 
-  console.log('sele', allImages);
-
   return (
     <div>
       <InfoHeader
@@ -186,7 +184,7 @@ const UpdateHotel = () => {
       <div className="p-2 bg-neutral-50 border border-t-0 mb-5">
         <SearchInput
           placeholder="Search Hotel by Name"
-          style={{ width: 400 }}
+          style={{ width: 250 }}
         />{' '}
       </div>
 

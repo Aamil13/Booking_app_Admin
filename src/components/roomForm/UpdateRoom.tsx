@@ -54,7 +54,7 @@ const UpdateRoom = () => {
   }, [roomData, setValue]);
 
   const onSubmit: SubmitHandler<inputs> = (data) => {
-    console.log(data);
+    // console.log(data);
 
     updateRoom({ roomId: roomState[0]?.roomId, data });
   };

@@ -1,7 +1,7 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import LoginImage from '../assets/ai-generated-9145898_1920.jpg';
 import icon from '../../public/favicon-32x32.png';
-import { Input } from 'antd';
+import { Input, Spin } from 'antd';
 import {
   TiSocialGooglePlusCircular,
   TiSocialGithubCircular,
@@ -28,9 +28,10 @@ const Register = () => {
     formState: { errors },
   } = useForm<Inputs>({});
   const [showPassword, setShowPassword] = useState(false);
-  const { mutate } = useRegister();
+  const { mutate, isPending } = useRegister();
+  const [isLoaded, setIsLoaded] = useState(false);
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log('Data', data);
+    // console.log('Data', data);
     mutate(data);
   };
 
@@ -40,10 +41,17 @@ const Register = () => {
         <img src={icon} alt="icon" />
         <h1 className="text-xl font-bold text-white">Booking-Admin</h1>
       </div>
+
+      {!isLoaded && (
+        <div className="w-3/4 max-xl:w-2/3 max-lg:w-1/2 max-sm:hidden object-cover animate-pulse bg-neutral-300 h-full"></div>
+      )}
       <img
         src={LoginImage}
         alt="Image"
-        className="w-3/4 max-xl:w-2/3 max-lg:w-1/2 max-sm:hidden object-cover"
+        className={`w-3/4 max-xl:w-2/3 max-lg:w-1/2 max-sm:hidden object-cover ${
+          isLoaded ? 'block' : 'hidden'
+        }`}
+        onLoad={() => setIsLoaded(true)}
       />
       {/* //login  */}
       <div className="flex flex-col items-center justify-center w-full gap-4">
@@ -138,7 +146,13 @@ const Register = () => {
             </div>
           </div>
           <button className="bg-green-400 p-2 rounded-lg text-white hover:bg-green-500 transition-all duration-200 ">
-            Sign Up
+            {isPending ? (
+              <p>
+                <Spin />
+              </p>
+            ) : (
+              <p> Sign Up</p>
+            )}{' '}
           </button>
           <p className="text-sm text-center">
             Already have an account?{'  '}

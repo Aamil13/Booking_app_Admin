@@ -50,7 +50,7 @@ const CreateRoom = () => {
       <div className="p-2 bg-neutral-50 border border-t-0 mb-5">
         <SearchInput
           placeholder="Search Hotel by Name"
-          style={{ width: 400 }}
+          style={{ width: 250 }}
         />{' '}
       </div>
       <form

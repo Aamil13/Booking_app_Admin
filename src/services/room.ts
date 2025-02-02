@@ -46,7 +46,7 @@ export const useCreateRoom = (id: string) => {
       message.success('Room Created', 2);
     },
     onError: (res: any) => {
-      console.log(res, 'res');
+      // console.log(res, 'res');
       message.error(res.message, 2);
     },
   });
@@ -90,7 +90,7 @@ export const useDeleteRoom = () => {
       message.success('Room Deleted', 2);
     },
     onError: (res: any) => {
-      console.log(res, 'res');
+      // console.log(res, 'res');
       message.error(res.message, 2);
     },
   });

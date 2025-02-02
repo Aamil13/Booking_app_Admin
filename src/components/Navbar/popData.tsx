@@ -8,6 +8,9 @@ import { MdOutlineAttachMoney } from 'react-icons/md';
 import { FaQuestion } from 'react-icons/fa6';
 import { LuLogOut } from 'react-icons/lu';
 import { useMainStore } from '../../store/store';
+import { message } from 'antd';
+import useCookie from '../../hooks/useCookie';
+import { useNavigate } from 'react-router-dom';
 
 const notiData = [
   {
@@ -112,6 +115,17 @@ export const Notificationsontent = (
 
 export const profileContent = () => {
   const userName = useMainStore((state) => state.userName);
+
+  const navigate = useNavigate();
+  const resetStore = useMainStore((state) => state.resetUserName);
+  const [_, __, deleteCookie] = useCookie('access_token');
+
+  const handleLogOut = () => {
+    deleteCookie();
+    message.success('Logged Out', 2);
+    resetStore();
+    navigate('/login');
+  };
   return (
     <div className="w-60 p-2 flex flex-col gap-2">
       <div className="flex items-start gap-4 w-full cursor-pointer  px-2 pt-2 pb-5 border-b">
@@ -152,7 +166,10 @@ export const profileContent = () => {
         </div>
       </div>
 
-      <button className="flex justify-center items-center gap-2 bg-red-500 px-2 py-2 rounded-md text-white  font-semibold">
+      <button
+        onClick={() => handleLogOut()}
+        className="flex justify-center items-center gap-2 bg-red-500 px-2 py-2 rounded-md text-white  font-semibold"
+      >
         Logout <LuLogOut size={12} />
       </button>
     </div>

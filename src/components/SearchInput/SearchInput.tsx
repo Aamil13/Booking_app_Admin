@@ -1,4 +1,4 @@
-import { Select } from 'antd';
+import { Select, Spin } from 'antd';
 import { useState } from 'react';
 
 import { useSearchHotel } from '../../services/hotel';
@@ -10,7 +10,11 @@ export const SearchInput: React.FC<{
 }> = (props) => {
   const [value, setValue] = useState<string | null>(null);
   const [searcValue, setSearchValue] = useState('');
-  const { data: searchedHotel } = useSearchHotel(searcValue);
+  const {
+    data: searchedHotel,
+    isFetching,
+    isLoading,
+  } = useSearchHotel(searcValue);
 
   const navigate = useNavigate();
   const handleSearch = (newValue: string) => {
@@ -35,7 +39,15 @@ export const SearchInput: React.FC<{
       filterOption={false}
       onSearch={handleSearch}
       onChange={handleChange}
-      notFoundContent={null}
+      notFoundContent={
+        isFetching ? (
+          <div className="flex items-center justify-center">
+            <Spin size="small" />
+          </div>
+        ) : isLoading && searchedHotel?.length === 0 ? (
+          'No results'
+        ) : null
+      }
       options={(searchedHotel || []).map((d: any) => ({
         value: d._id,
         label: d.name,

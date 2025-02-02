@@ -1,7 +1,7 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import LoginImage from '../assets/ai-generated-9145898_1920.jpg';
 import icon from '../../public/favicon-32x32.png';
-import { Input } from 'antd';
+import { Input, Spin } from 'antd';
 import {
   TiSocialGooglePlusCircular,
   TiSocialGithubCircular,
@@ -27,11 +27,17 @@ const Login = () => {
     formState: { errors },
   } = useForm<Inputs>({});
   const [showPassword, setShowPassword] = useState(false);
-
-  const { mutate } = useLogin();
+  const [isLoaded, setIsLoaded] = useState(false);
+  const { mutate, isPending } = useLogin();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     mutate(data);
   };
+
+  //   useEffect(() => {
+  //     setTimeout(() => {
+  //       setIsLoaded(true);
+  //     }, 2000);
+  //   }, []);
 
   return (
     <div className="flex h-screen justify-between">
@@ -39,13 +45,22 @@ const Login = () => {
         <img src={icon} alt="icon" />
         <h1 className="text-xl font-bold text-white">Booking-Admin</h1>
       </div>
+
+      {!isLoaded && (
+        <div className="w-3/4 max-xl:w-2/3 max-lg:w-1/2 max-sm:hidden object-cover animate-pulse bg-neutral-300 h-full"></div>
+      )}
+
       <img
         src={LoginImage}
         alt="Image"
-        className="w-3/4 max-xl:w-2/3 max-lg:w-1/2 max-sm:hidden object-cover"
+        className={`w-3/4 max-xl:w-2/3 max-lg:w-1/2 max-sm:hidden object-cover ${
+          isLoaded ? 'block' : 'hidden'
+        }`}
+        onLoad={() => setIsLoaded(true)}
       />
+
       {/* //login  */}
-      <div className="flex flex-col items-center justify-center w-full gap-4">
+      <div className="flex flex-col items-center justify-center w-full xl:w-1/3 sm:w-1/2 gap-4">
         <div>
           <h2 className="text-2xl font-semibold">
             Welcome to Booking! <span className="">👋🏻</span>{' '}
@@ -66,6 +81,7 @@ const Login = () => {
             <Controller
               name="username"
               control={control}
+              defaultValue="admin"
               rules={{ required: true }}
               render={({ field }) => <Input {...field} />}
             />
@@ -85,6 +101,7 @@ const Login = () => {
             <Controller
               name="password"
               control={control}
+              defaultValue="admin"
               rules={{ required: true }}
               render={({ field }) => (
                 <Input {...field} type={showPassword ? 'text' : 'password'} />
@@ -120,8 +137,17 @@ const Login = () => {
               Forgot Password?
             </button>
           </div>
-          <button className="bg-green-400 p-2 rounded-lg text-white hover:bg-green-500 transition-all duration-200 ">
-            Login
+          <button
+            disabled={isPending}
+            className="bg-green-400 p-2 rounded-lg text-white hover:bg-green-500 transition-all duration-200 "
+          >
+            {isPending ? (
+              <p>
+                <Spin />
+              </p>
+            ) : (
+              <p> Login</p>
+            )}{' '}
           </button>
           <p className="text-sm text-center">
             Don't have an account yet?{'  '}

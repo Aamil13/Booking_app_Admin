@@ -13,8 +13,6 @@ const View_Delete_Room = () => {
   const { mutate: deleteRoom } = useDeleteRoom();
   const [isDelete, setIsDelete] = useState<boolean>(false);
 
-  console.log('rrr', Rooms);
-
   const confirm: any = (roomId: any, hotelID: any) => {
     deleteRoom({ roomId, hotelID });
   };
@@ -120,7 +118,7 @@ const View_Delete_Room = () => {
           onChange: (page) => setCurrentPage(page), // Update the current page on change
         }}
         loading={isFetching}
-        className="border border-t-0 "
+        className="border border-t-0 overflow-x-auto"
       />
     </div>
   );

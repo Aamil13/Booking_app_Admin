@@ -189,7 +189,7 @@ const View_Delete = () => {
           onChange: (page) => setCurrentPage(page), // Update the current page on change
         }}
         loading={isFetching}
-        className="border border-t-0 "
+        className="border border-t-0 overflow-x-auto"
       />
     </div>
   );
