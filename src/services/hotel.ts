@@ -74,8 +74,13 @@ export async function getHotel(id: string, token: string) {
   });
   return response;
 }
+
+interface Hotel {
+  _id: string;
+  name: string;
+}
 export async function searchHotel(name: string, token: string) {
-  const response: any = await client(`hotel/search_hotel?search=${name}`, {
+  const response: Hotel[] = await client(`hotel/search_hotel?search=${name}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return response;

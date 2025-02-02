@@ -11,7 +11,7 @@ export const SearchInput: React.FC<{
   const [value, setValue] = useState<string | null>(null);
   const [searcValue, setSearchValue] = useState('');
   const {
-    data: searchedHotel,
+    data: searchedHotel = [],
     isFetching,
     isLoading,
   } = useSearchHotel(searcValue);
